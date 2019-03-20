@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { search } from "../../store/actions/quote";
@@ -70,6 +70,19 @@ const SearchBar = ({ typeahead, author, getAuthors, getAuthor, search }) => {
   const [quotesNumber, setQuotesNumber] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
+  useEffect(() => {
+    document.addEventListener("click", closeResults);
+  });
+
+  const closeResults = () => {
+    if (
+      document.activeElement.id !== "results" &&
+      document.activeElement.id !== "searchbar"
+    ) {
+      setShowResults(false);
+    }
+  };
+
   const onChangeHandler = e => {
     setQuery(e.target.value);
     setShowResults(true);
@@ -93,6 +106,7 @@ const SearchBar = ({ typeahead, author, getAuthors, getAuthor, search }) => {
   return (
     <Container>
       <Search
+        id="searchbar"
         type="text"
         placeholder="Type author's name: William Shakespeare"
         value={query}

@@ -67,7 +67,7 @@ const Results = ({ authorSelected, show, authors, query, loading }) => {
     };
 
     return (
-      <Container>
+      <Container id="results">
         <List>
           {filteredAuthors.length > 0 ? (
             filteredAuthors
