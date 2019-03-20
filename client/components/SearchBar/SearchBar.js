@@ -48,7 +48,7 @@ const Button = styled.button`
   background-color: #ffb4a2;
   margin: 10px;
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: bold;
   border: 2px solid #6d6875;
   border-radius: 50px;
@@ -57,6 +57,11 @@ const Button = styled.button`
   &:hover,
   &:focus {
     background-color: #e5989b;
+  }
+
+  @media (min-width: ${({ theme: { mediaQueryMinWidth } }) =>
+      mediaQueryMinWidth}) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -109,7 +114,7 @@ const SearchBar = ({ typeahead, author, getAuthors, getAuthor, search }) => {
           }
         }}
       />
-      {query.trim().length > 0 && author.success ? (
+      {(query.trim().length > 0 && author.success) || author.success ? (
         <Button onClick={getAnotherQuote}>Another Quote</Button>
       ) : null}
       <Results
