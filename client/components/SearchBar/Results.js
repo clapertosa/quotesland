@@ -21,8 +21,13 @@ const List = styled.ul`
   li {
     list-style-type: none;
     padding: 4px 10px 4px 10px;
-    font-size: 1.2rem;
+    font-size: 2rem;
     text-align: center;
+
+    @media (min-width: ${({ theme: { mediaQueryMinWidth } }) =>
+        mediaQueryMinWidth}) {
+      font-size: 1.3rem;
+    }
   }
 `;
 
