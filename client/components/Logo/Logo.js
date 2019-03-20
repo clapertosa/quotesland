@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   grid-area: logo;
   margin: auto;
-  max-width: 100px;
+  max-width: 200px;
   width: 100%;
   height: auto;
 

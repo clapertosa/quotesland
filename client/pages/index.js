@@ -6,7 +6,7 @@ import Logo from "../components/Logo/Logo";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-areas: "logo" "searchbar" "results";
+  grid-template-areas: "logo" "searchbar" "quote";
 `;
 
 const Index = () => {

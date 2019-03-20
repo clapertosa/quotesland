@@ -7,9 +7,10 @@ import Spinner from "../Spinner/Spinner";
 
 const Container = styled.div`
   display: grid;
+  grid-area: quote;
   grid-template-columns: auto;
   grid-template-rows: 1fr auto auto;
-  grid-template-areas: "picture" "quote" "description";
+  grid-template-areas: "picture" "quotearea" "description";
   margin: 20px auto 20px auto;
   padding: 20px;
   border: 2px solid #b5838d;
@@ -20,8 +21,8 @@ const QuoteArea = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto 1fr;
-  grid-template-areas: "body body body" ". . author";
-  grid-area: quote;
+  grid-template-areas: "body body body" "author author author";
+  grid-area: quotearea;
 
   blockquote {
     grid-area: body;

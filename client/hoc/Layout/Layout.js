@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 const theme = {
-  mediaQueryMinWidth: "40rem"
+  mediaQueryMinWidth: "80rem"
 };
 
 const GlobalStyle = createGlobalStyle`

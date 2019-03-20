@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 const Container = styled.div`
   position: absolute;
-  top: 50px;
+  top: 105px;
   width: 100%;
-  max-height: 350px;
   background-color: #ffb4a2;
   border: 2px solid #6d6875;
   border-radius: 15px;
   overflow: auto;
+
+  @media (min-width: ${({ theme: { mediaQueryMinWidth } }) =>
+      mediaQueryMinWidth}) {
+    top: 75px;
+  }
 `;
 
 const List = styled.ul`
@@ -17,6 +21,7 @@ const List = styled.ul`
   li {
     list-style-type: none;
     padding: 4px 10px 4px 10px;
+    font-size: 1.2rem;
     text-align: center;
   }
 `;

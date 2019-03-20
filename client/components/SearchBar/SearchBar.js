@@ -18,14 +18,28 @@ const Container = styled.div`
 const Search = styled.input`
   outline: none;
   width: 100%;
+  height: 100px;
   box-sizing: border-box;
   border: 2px solid #b5838d;
   border-radius: 100px;
   padding: 10px;
   font-weight: bold;
+  font-size: 2rem;
 
   &:placeholder-shown {
     color: #6d6875;
+    font-size: 2rem;
+
+    @media (min-width: ${({ theme: { mediaQueryMinWidth } }) =>
+        mediaQueryMinWidth}) {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media (min-width: ${({ theme: { mediaQueryMinWidth } }) =>
+      mediaQueryMinWidth}) {
+    font-size: 1.3rem;
+    height: 70px;
   }
 `;
 
