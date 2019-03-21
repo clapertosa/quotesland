@@ -31,17 +31,17 @@ export default results => {
 };
 
 const getThumbnailSource = (source, pageImage) => {
-  if (source.indexOf(".jpg") !== -1) {
+  if (source.toLowerCase().indexOf(".jpg") !== -1) {
     return (
-      source.substring(0, source.indexOf(".jpg") + 4) + `/190px-${pageImage}`
+      source.substring(0, source.toLowerCase().indexOf(".jpg") + 4) + `/190px-${pageImage}`
     );
-  } else if (source.indexOf(".svg") !== -1) {
+  } else if (source.toLowerCase().indexOf(".svg") !== -1) {
     return (
-      source.substring(0, source.indexOf(".svg") + 4) + `/190px-${pageImage}`
+      source.substring(0, source.toLowerCase().indexOf(".svg") + 4) + `/190px-${pageImage}`
     );
-  } else if (source.indexOf(".png") !== -1) {
+  } else if (source.toLowerCase().indexOf(".png") !== -1) {
     return (
-      source.substring(0, source.indexOf(".png") + 4) + `/190px-${pageImage}`
+      source.substring(0, source.toLowerCase().indexOf(".png") + 4) + `/190px-${pageImage}`
     );
   } else {
     return "";
