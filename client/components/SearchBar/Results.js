@@ -46,9 +46,11 @@ const ListItem = styled.li`
 
 const Results = ({ authorSelected, show, authors, query, loading }) => {
   if (show && authors.length > 0 && query.trim().length > 0 && !loading) {
-    let filteredAuthors = authors.filter(author =>
-      author.name.toLowerCase().includes(query.toLowerCase())
-    );
+    let filteredAuthors = authors.filter(author => {
+      const regexStr = "(?=.*" + query.split(" ").join(")(?=.*") + ")";
+      const searchRegex = new RegExp(regexStr, "gi");
+      return author.name.match(searchRegex) !== null;
+    });
 
     const select = (e, name, count) => {
       const resultsLength = document.querySelectorAll("li[tabindex]").length;
