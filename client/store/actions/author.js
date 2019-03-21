@@ -12,7 +12,7 @@ export const getAuthor = name => async dispatch => {
   dispatch(authorInit());
   try {
     const query = await axios.post("/author", { name });
-    const data = wikiConversion(query.data);
+    const data = wikiConversion(query.data, name);
     dispatch(authorSuccess(data));
   } catch (error) {
     dispatch(authorFails(error));

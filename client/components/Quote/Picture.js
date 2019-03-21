@@ -22,11 +22,13 @@ const Container = styled.div`
 `;
 
 const Picture = ({ image, name }) => {
-  return (
-    <Container>
-      <img src={image} alt={name} />
-    </Container>
-  );
+  if (image) {
+    return (
+      <Container>
+        <img src={image} alt={name} />
+      </Container>
+    );
+  } else return null;
 };
 
 export default Picture;

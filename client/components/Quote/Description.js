@@ -43,17 +43,19 @@ const Source = styled.div`
 `;
 
 const Description = ({ extract, source }) => {
-  return (
-    <Container>
-      <Title>Description</Title>
-      <Extract>{extract}</Extract>
-      <Source>
-        <a href={source} rel="noopener noreferrer" target="_blank">
-          Wikipedia
-        </a>
-      </Source>
-    </Container>
-  );
+  if (extract) {
+    return (
+      <Container>
+        <Title>Description</Title>
+        <Extract>{extract}</Extract>
+        <Source>
+          <a href={source} rel="noopener noreferrer" target="_blank">
+            Wikipedia
+          </a>
+        </Source>
+      </Container>
+    );
+  } else return null;
 };
 
 export default Description;

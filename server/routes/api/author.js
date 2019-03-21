@@ -17,7 +17,9 @@ router.post("/", async (req, res) => {
     });
 
     if (
-      !result.data.query.pages[Object.keys(result.data.query.pages)[0]].extract
+      !result.data.query.pages[Object.keys(result.data.query.pages)[0]]
+        .extract &&
+      req.body.name.includes(" ")
     ) {
       result = await axios.get("", {
         params: {

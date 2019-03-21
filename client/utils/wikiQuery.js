@@ -1,28 +1,46 @@
 const crypto = require("crypto");
 
 // URLs
-const WIKIPEDIA_ID_URL = "http://en.wikipedia.org/?curid=";
+const WIKIPEDIA_ID_URL = "https://en.wikipedia.org/?curid=";
 const WIKIPEDIA_IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/";
 
-export default results => {
-  let author = results.query.pages[Object.keys(results.query.pages)[0]];
+export default (data, name) => {
+  let author;
+  if (!data.query) {
+    author = {
+      image: null,
+      signatureImage: null,
+      signature: name,
+      extract: null,
+      pageUrl: null
+    };
+    return author;
+  }
+
+  author = data.query.pages[Object.keys(data.query.pages)[0]];
+  const {
+    thumbnail,
+    pageimage = "",
+    images,
+    title = name,
+    extract,
+    pageid
+  } = author;
 
   author = {
-    image: getThumbnailSource(author.thumbnail.source, author.pageimage),
-    signatureImage: author.images.filter(
+    image: getThumbnailSource(thumbnail ? thumbnail.source : "", pageimage),
+    signatureImage: images.filter(
       image =>
         image.title
           .toLowerCase()
           .replace(/\s/g, "")
-          .includes(
-            `${author.title.toLowerCase().replace(/\s/g, "")}signature`
-          ) ||
+          .includes(`${title.toLowerCase().replace(/\s/g, "")}signature`) ||
         image.title.includes("Signature") ||
         image.title.toLowerCase().includes("firma")
     ),
-    signature: author.title,
-    extract: reduceExtract(author.extract),
-    pageUrl: WIKIPEDIA_ID_URL + author.pageid
+    signature: title,
+    extract: reduceExtract(extract),
+    pageUrl: WIKIPEDIA_ID_URL + pageid
   };
 
   author = { ...author, signatureImage: getImageUrl(author.signatureImage) };
@@ -33,15 +51,18 @@ export default results => {
 const getThumbnailSource = (source, pageImage) => {
   if (source.toLowerCase().indexOf(".jpg") !== -1) {
     return (
-      source.substring(0, source.toLowerCase().indexOf(".jpg") + 4) + `/190px-${pageImage}`
+      source.substring(0, source.toLowerCase().indexOf(".jpg") + 4) +
+      `/190px-${pageImage}`
     );
   } else if (source.toLowerCase().indexOf(".svg") !== -1) {
     return (
-      source.substring(0, source.toLowerCase().indexOf(".svg") + 4) + `/190px-${pageImage}`
+      source.substring(0, source.toLowerCase().indexOf(".svg") + 4) +
+      `/190px-${pageImage}`
     );
   } else if (source.toLowerCase().indexOf(".png") !== -1) {
     return (
-      source.substring(0, source.toLowerCase().indexOf(".png") + 4) + `/190px-${pageImage}`
+      source.substring(0, source.toLowerCase().indexOf(".png") + 4) +
+      `/190px-${pageImage}`
     );
   } else {
     return "";
